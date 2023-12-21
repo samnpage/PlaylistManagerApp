@@ -1,16 +1,33 @@
 using Microsoft.EntityFrameworkCore;
 using PlaylistManagerApp.Data;
+using PlaylistManagerApp.Data.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-
+// DbContext configuration, adds the DbContext for dependency injection
 builder.Services.AddDbContext<PlaylistManagerDbContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
+
+// builder.Services.AddScoped<IPlaylistService, PlaylistService();
+// builder.Services.AddScoped<ISongService, SongService();
+// builder.Services.AddScoped<IRatingService, RatingService();
+// builder.Services.AddScoped<IFavoriteService, FavoriteService();
+
+// Enable using Identity Managers (Users, SignIn, Password)
+builder.Services.AddDefaultIdentity<UserEntity>()
+    .AddEntityFrameworkStores<PlaylistManagerDbContext>();
+
+// Configure what happens when a logged out user tries to access an authorized route
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+});
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -28,6 +45,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
