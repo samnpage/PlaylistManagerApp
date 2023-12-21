@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistManagerApp.Services", "PlaylistManagerApp.Services\PlaylistManagerApp.Services.csproj", "{C96FD625-3C1E-4D0F-86F9-9EC4D596F17F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistManagerApp.Data", "PlaylistManagerApp.Data\PlaylistManagerApp.Data.csproj", "{EEB3DE20-E678-4B20-8B95-AAF376E6998A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistManagerApp.Models", "PlaylistManagerApp.Models\PlaylistManagerApp.Models.csproj", "{52FF4AA2-E356-477D-B23C-C96DE830EC3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistManagerApp.Mvc", "PlaylistManagerApp.Mvc\PlaylistManagerApp.Mvc.csproj", "{62D49433-1487-477D-9498-A676ECBD3F4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{847F4ECB-FC9F-4B98-B217-0EC353DE786C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847F4ECB-FC9F-4B98-B217-0EC353DE786C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847F4ECB-FC9F-4B98-B217-0EC353DE786C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847F4ECB-FC9F-4B98-B217-0EC353DE786C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C96FD625-3C1E-4D0F-86F9-9EC4D596F17F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C96FD625-3C1E-4D0F-86F9-9EC4D596F17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C96FD625-3C1E-4D0F-86F9-9EC4D596F17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C96FD625-3C1E-4D0F-86F9-9EC4D596F17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB3DE20-E678-4B20-8B95-AAF376E6998A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB3DE20-E678-4B20-8B95-AAF376E6998A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB3DE20-E678-4B20-8B95-AAF376E6998A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB3DE20-E678-4B20-8B95-AAF376E6998A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52FF4AA2-E356-477D-B23C-C96DE830EC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52FF4AA2-E356-477D-B23C-C96DE830EC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52FF4AA2-E356-477D-B23C-C96DE830EC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52FF4AA2-E356-477D-B23C-C96DE830EC3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D49433-1487-477D-9498-A676ECBD3F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D49433-1487-477D-9498-A676ECBD3F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D49433-1487-477D-9498-A676ECBD3F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D49433-1487-477D-9498-A676ECBD3F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

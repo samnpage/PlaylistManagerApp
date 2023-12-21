@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlaylistManagerApp.Data\PlaylistManagerApp.Data.csproj" />
+    <ProjectReference Include="..\PlaylistManagerApp.Models\PlaylistManagerApp.Models.csproj" />
+    <ProjectReference Include="..\PlaylistManagerApp.Services\PlaylistManagerApp.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>52059613-1808-4d5b-abcc-8cfa874e4035</UserSecretsId>
+  </PropertyGroup>
+
+</Project>
