@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlaylistManagerApp.Data;
 using PlaylistManagerApp.Data.Entities;
+using PlaylistManagerApp.Services.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<PlaylistManagerDbContext>(
     )
 );
 
+builder.Services.AddScoped<IUserService, UserService>();
 // builder.Services.AddScoped<IPlaylistService, PlaylistService();
 // builder.Services.AddScoped<ISongService, SongService();
 // builder.Services.AddScoped<IRatingService, RatingService();
