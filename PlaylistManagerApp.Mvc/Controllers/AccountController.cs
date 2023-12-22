@@ -2,7 +2,7 @@ using PlaylistManagerApp.Models.User;
 using PlaylistManagerApp.Services.User;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdentityDemo.WebMvc.Controllers;
+namespace PlaylistManagerApp.Mvc.Controllers;
 
 public class AccountController : Controller
 {
