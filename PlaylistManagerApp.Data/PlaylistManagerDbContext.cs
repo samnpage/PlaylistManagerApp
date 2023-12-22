@@ -16,4 +16,9 @@ public class PlaylistManagerDbContext : IdentityDbContext<UserEntity, IdentityRo
 
         modelBuilder.Entity<UserEntity>().ToTable("Users");
     }
+
+    public DbSet<SongEntity> Songs { get; set; }
+    public DbSet<PlaylistEntity> Playlists { get; set; }
+    public DbSet<PlaylistSongEntity> PlaylistSongs { get; set; }
+    public DbSet<SongRatingEntity> Ratings { get; set; }
 }
