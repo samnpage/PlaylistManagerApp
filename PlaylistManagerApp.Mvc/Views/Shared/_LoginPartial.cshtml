@@ -1,33 +1,30 @@
 @using Microsoft.AspNetCore.Identity
-@using PlaylistManagerApp.Data
 @using PlaylistManagerApp.Data.Entities
 @inject SignInManager<UserEntity> SignInManager
-@inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            <a class="nav-link">
+                Hello @User.Identity?.Name!
+            </a>
         </li>
         <li class="nav-item">
-            @* <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action">
-            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form> *@
-            <li class="nav-item">
-                <a asp-action="Logout" asp-controller="Account" class="nav-link">Logout</a>
-            </li>
+            <a asp-action="Logout" asp-controller="Account" class="nav-link">
+                Logout
+            </a>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-action="Register" asp-controller="Account">
+            <a class="nav-link" asp-action="Register" asp-controller="Account">
                 Register
                 </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-action="Login" asp-controller="Account">
+            <a class="nav-link" asp-action="Login" asp-controller="Account">
                 Login
             </a>
         </li>
