@@ -1,6 +1,6 @@
 namespace PlaylistManagerApp.Models.Spotify;
 
-public class SearchSong
+public class SearchArtist
 {
     public string Name { get; set; } = string.Empty;
 }
