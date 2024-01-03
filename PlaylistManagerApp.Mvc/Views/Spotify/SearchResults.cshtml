@@ -1,0 +1,13 @@
+@model List<PlaylistManagerApp.Models.Spotify.SearchResult>
+
+<h2>Search Results</h2>
+
+<ul>
+    @foreach (var result in Model)
+    {
+        <li>
+            @result.Name by @string.Join(", ", result.Artists.Select(a => a.Name))
+        </li>
+        <button>Add to playlist</button>
+    }
+</ul>
