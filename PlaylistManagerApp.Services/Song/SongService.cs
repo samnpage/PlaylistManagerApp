@@ -14,22 +14,35 @@ public class SongService : ISongService
     }
 
     // Create
-    public async Task CreateSongFromSpotifySearchResultAsync(SongCreate model)
+    public async Task<bool> CreateSongFromSpotifySearchResultAsync(SongCreate model)
     {
-        SongEntity entity = new()
+        if (!SongExists(model.SpotifyTrackID))
         {
-            SpotifyTrackID = model.SpotifyTrackID,
-            Title = model.Title,
-            Artist = model.Artist,
-            DateAdded = DateTime.Now
-        };
+            SongEntity entity = new()
+            {
+                SpotifyTrackID = model.SpotifyTrackID,
+                Title = model.Title,
+                Artist = model.Artist,
+                DateAdded = DateTime.Now
+            };
 
-        _context.Songs.Add(entity);
-        await _context.SaveChangesAsync();
+            _context.Songs.Add(entity);
+            await _context.SaveChangesAsync();
+            return true;
+        }  
+
+        return false;    
     }
 
+    // Read
     public async Task<IEnumerable<SongEntity>> GetAllSongs()
     {
         return await _context.Songs.ToListAsync();
+    }
+
+    // Helper Methods
+    private bool SongExists(string spotifyTrackId)
+    {
+        return _context.Songs.Any(s => s.SpotifyTrackID == spotifyTrackId);
     }
 }

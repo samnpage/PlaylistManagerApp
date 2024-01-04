@@ -4,5 +4,5 @@ namespace PlaylistManagerApp.Services.Song;
 
 public interface ISongService
 {
-    Task CreateSongFromSpotifySearchResultAsync(SongCreate model);
+    Task<bool> CreateSongFromSpotifySearchResultAsync(SongCreate model);
 }
