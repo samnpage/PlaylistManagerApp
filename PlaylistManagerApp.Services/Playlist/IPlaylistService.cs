@@ -1,6 +1,4 @@
-using PlaylistManagerApp.Data.Entities;
 using PlaylistManagerApp.Models.Playlist;
-using PlaylistManagerApp.Models.Spotify;
 
 namespace PlaylistManagerApp.Services.Playlist;
 
@@ -13,5 +11,5 @@ public interface IPlaylistService
 
     // Read
     Task<IEnumerable<PlaylistListItem>> GetAllPlaylistsAsync();
-    Task<PlaylistDetail> GetPlaylistByIdAsync(int id);
+    Task<PlaylistDetail?> GetPlaylistByIdAsync(int id);
 }

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using PlaylistManagerApp.Data.Entities;
 using PlaylistManagerApp.Models.Song;
 using PlaylistManagerApp.Services.Song;
 
@@ -14,9 +13,10 @@ public class SongController : Controller
         _songService = songService;
     }
 
-    public async Task<IActionResult> CreateSong([FromBody] SongCreate model)
+    [HttpPost]
+    public async Task<IActionResult> Add(SongCreate model)
     {
         await _songService.CreateSongFromSpotifySearchResultAsync(model);
-        return Json(new { success = true });        
+        return RedirectToAction("Index");        
     }
 }

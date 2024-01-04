@@ -1,28 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
-using PlaylistManagerApp.Services.Spotify;
+using PlaylistManagerApp.Services.Search;
 
 namespace PlaylistManagerApp.Mvc.Controllers;
-public class SpotifyController : Controller
+public class SearchController : Controller
 {
-    private readonly ISpotifyService _spotifyService;
+    private readonly ISearchService _spotifyService;
 
-    public SpotifyController(ISpotifyService spotifyService)
+    public SearchController(ISearchService spotifyService)
     {
         _spotifyService = spotifyService;
     }
 
-    public IActionResult SearchSong()
+    public IActionResult Search()
     {
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> SearchSong(string query)
+    public async Task<IActionResult> Search(string query)
     {
         // Call the SpotifyService to search for a song
         var searchResults = await _spotifyService.SearchForSong(query);
 
         // Pass the search results to the view
-        return View("SearchResults", searchResults);
+        return View("Results", searchResults);
     }
 }
