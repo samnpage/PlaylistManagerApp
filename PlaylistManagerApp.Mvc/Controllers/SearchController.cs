@@ -17,7 +17,7 @@ public class SearchController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Search(string query)
+    public async Task<IActionResult> Results(string query)
     {
         // Call the SpotifyService to search for a song
         var searchResults = await _spotifyService.SearchForSong(query);
