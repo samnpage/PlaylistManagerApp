@@ -1,7 +1,7 @@
 @model List<PlaylistManagerApp.Models.Search.SearchResult>
 
 @* @{
-    PlaylistManagerApp.Models.Song.SongCreate songToAdd = new();
+PlaylistManagerApp.Models.Song.SongCreate songToAdd = new();
 } *@
 <h2>Search Results</h2>
 
@@ -11,11 +11,12 @@
         <li>
             @result.Name by @string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())
             <form asp-controller="Song" asp-action="Add" method="post">
-                @Html.Hidden("SongCreate.SpotifyTrackID", @result.Id)
-                @Html.Hidden("SongCreate.Title", @result.Name)
-                @Html.Hidden("SongCreate.Artist", @result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())
+                <input type="hidden" name="SpotifyTrackID" value="@result.Id" />
+                <input type="hidden" name="Title" value="@result.Name" />
+                <input type="hidden" name="Artist"
+                    value="@string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())" />
+                <button type="submit">Add Song</button>
             </form>
-            <button type="submit">Add to playlist</button>
         </li>
     }
 </ul>
