@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using PlaylistManagerApp.Data;
 using PlaylistManagerApp.Data.Entities;
 using PlaylistManagerApp.Models.Playlist;
-using PlaylistManagerApp.Models.Spotify;
 
 namespace PlaylistManagerApp.Services.Playlist;
 

@@ -1,4 +1,4 @@
-namespace PlaylistManagerApp.Models.Spotify;
+namespace PlaylistManagerApp.Models.Search;
 
 public class SearchArtist
 {
