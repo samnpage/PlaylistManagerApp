@@ -11,7 +11,7 @@ public class SearchController : Controller
         _spotifyService = spotifyService;
     }
 
-    public IActionResult Search()
+    public IActionResult Index()
     {
         return View();
     }
