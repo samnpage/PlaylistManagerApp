@@ -16,7 +16,16 @@ public class SongController : Controller
     [HttpPost]
     public async Task<IActionResult> Add(SongCreate model)
     {
-        await _songService.CreateSongFromSpotifySearchResultAsync(model);
-        return RedirectToAction("Index");        
+        if (ModelState.IsValid)
+        {
+            if (!await _songService.CreateSongFromSpotifySearchResultAsync(model))
+            {
+                return BadRequest("Song already exists.");
+            }    
+
+            return Ok("Song added successfully!");
+        }
+
+        return View(model);
     }
 }
