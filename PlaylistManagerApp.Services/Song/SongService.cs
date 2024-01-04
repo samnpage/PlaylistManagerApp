@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PlaylistManagerApp.Data;
 using PlaylistManagerApp.Data.Entities;
 using PlaylistManagerApp.Models.Song;
@@ -29,6 +30,6 @@ public class SongService : ISongService
 
     public async Task<IEnumerable<SongEntity>> GetAllSongs()
     {
-        return _context.Songs.ToList();
+        return await _context.Songs.ToListAsync();
     }
 }

@@ -32,7 +32,7 @@ public class SearchService : ISearchService
             var content = await response.Content.ReadAsStringAsync();
 
             // Deserializes the JSON response into a list of SearchResult objects
-            var searchResult = JsonConvert.DeserializeObject<SpotifySearchResult>(content);
+            var searchResult = JsonConvert.DeserializeObject<SpotifySearchResult>(content)!;
 
             return searchResult.Tracks.Items;
         }
@@ -56,7 +56,7 @@ public class SearchService : ISearchService
         response.EnsureSuccessStatusCode();
 
         var tokenContent = await response.Content.ReadAsStringAsync();
-        var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(tokenContent);
+        var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(tokenContent)!;
 
         return tokenResponse.AccessToken;
     }
