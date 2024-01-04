@@ -9,4 +9,5 @@ public class SongEntity
     public int SpotifyTrackID { get; set; }
     public string Title { get; set; } = string.Empty;
     public string Artist { get; set; } = string.Empty;
+    public DateTime DateAdded { get; set; }
 }
