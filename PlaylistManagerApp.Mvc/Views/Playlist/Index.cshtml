@@ -1,7 +1,7 @@
 @model IEnumerable<PlaylistManagerApp.Models.Playlist.PlaylistListItem>
 
 <h2>My Playlists</h2>
-<a asp-area="" asp-controller="Playlist" asp-action="CreatePlaylist">Create New Playlist</a>
+<a asp-area="" asp-controller="Playlist" asp-action="Create">Create New Playlist</a>
 <hr>
 <ul>
     @foreach (var playlist in Model)
