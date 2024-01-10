@@ -14,35 +14,71 @@ public class SongService : ISongService
     }
 
     // Create
-    public async Task<bool> CreateSongFromSpotifySearchResultAsync(SongCreate model)
+    public async Task<int> CreateSongAsync(SongCreate model)
     {
-        if (!SongExists(model.SpotifyTrackID))
+        // Check if the song already exists
+        var existingSong = await _context.Songs
+            .FirstOrDefaultAsync(s => s.SpotifyTrackID == model.SpotifyTrackID);
+
+        if (existingSong != null)
         {
-            SongEntity entity = new()
-            {
-                SpotifyTrackID = model.SpotifyTrackID,
-                Title = model.Title,
-                Artist = model.Artist,
-                DateAdded = DateTime.Now
-            };
+            // Return the existing song's ID
+            return existingSong.SongId;
+        }
 
-            _context.Songs.Add(entity);
-            await _context.SaveChangesAsync();
-            return true;
-        }  
+        // Song doesn't exist, create a new one
+        SongEntity entity = new()
+        {
+            SpotifyTrackID = model.SpotifyTrackID,
+            Title = model.Title,
+            Artist = model.Artist,
+            DateAdded = DateTime.Now
+        };
 
-        return false;    
+        _context.Songs.Add(entity);
+        await _context.SaveChangesAsync();
+
+        // Return the newly created song's ID
+        return entity.SongId;
     }
 
-    // Read
-    public async Task<IEnumerable<SongEntity>> GetAllSongs()
+
+    // Get all songs
+    public async Task<List<SongListItem>> GetAllSongs()
     {
-        return await _context.Songs.ToListAsync();
+        List<SongListItem> songs = await _context.Songs
+            .Select(song => new SongListItem
+            {
+                Title = song.Title,
+                Artist = song.Artist,
+                DateAdded = song.DateAdded
+            })
+            .ToListAsync();
+
+        return songs;
+    }
+
+    // Get song by Id
+    public async Task<SongDetail> GetSongByIdAsync(int songId)
+    {
+        var song = await _context.Songs.FirstOrDefaultAsync(s => s.SongId == songId);
+
+        SongDetail detail = new()
+        {
+            SongId = song.SongId,
+            SpotifyTrackID = song.SpotifyTrackID,
+            Title = song.Title,
+            Artist = song.Artist,
+            DateAdded = song.DateAdded
+        };
+
+        return detail;
+
     }
 
     // Helper Methods
-    private bool SongExists(string spotifyTrackId)
-    {
-        return _context.Songs.Any(s => s.SpotifyTrackID == spotifyTrackId);
-    }
+    // private bool SongExists(string spotifyTrackId)
+    // {
+    //     return _context.Songs.Any(s => s.SpotifyTrackID == spotifyTrackId);
+    // }
 }
