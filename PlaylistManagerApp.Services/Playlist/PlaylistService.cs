@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using PlaylistManagerApp.Data;
 using PlaylistManagerApp.Data.Entities;
 using PlaylistManagerApp.Models.Playlist;
+using PlaylistManagerApp.Models.Song;
 
 namespace PlaylistManagerApp.Services.Playlist;
 
@@ -22,11 +23,12 @@ public class PlaylistService : IPlaylistService
             Title = playlist.Title,
             Description = playlist.Description
         };
+
         _context.Playlists.Add(entity);
         await _context.SaveChangesAsync();
     }
 
-    // Get all playlists
+    // Read All
     public async Task<IEnumerable<PlaylistListItem>> GetAllPlaylistsAsync()
     {
         List<PlaylistListItem> playlists = await _context.Playlists
@@ -40,27 +42,48 @@ public class PlaylistService : IPlaylistService
         return playlists;
     }
 
-    public async Task<PlaylistDetail?> GetPlaylistByIdAsync(int id)
+    // Read by Id
+    public async Task<PlaylistDetail?> GetPlaylistByIdAsync(int playlistId)
     {
-        PlaylistEntity? playlist = await _context.Playlists.FirstOrDefaultAsync(r => r.PlaylistId == id);
+        PlaylistEntity? playlist = await _context.Playlists.FirstOrDefaultAsync(r => r.PlaylistId == playlistId);
 
-            return playlist is null ? null : new()
-            {
-                Id = playlist.PlaylistId,
-                Title = playlist.Title,
-                Description = playlist.Description,
-            };
+        return playlist is null ? null : new()
+        {
+            Id = playlist.PlaylistId,
+            Title = playlist.Title,
+            Description = playlist.Description,
+        };
     }
 
-    // public async Task AddSongToPlaylist(int playlistId, SearchResult song)
-    // {
-    //     var playlist = await _context.Playlists.FindAsync(playlistId);
+    // Update
+    public async Task<bool> EditPlaylistByIdAsync(int playlistId, PlaylistEdit model)
+    {
+        PlaylistEntity entity = _context.Playlists.Find(playlistId);
 
-    //     if (playlist != null)
-    //     {
-    //         playlist.Songs.Add(song);
+        if (entity is null)
+        {
+            return false;
+        }
 
-    //         await _context.SaveChangesAsync();
-    //     }
-    // }
+        entity.PlaylistId = model.PlaylistId;
+        entity.Title = model.Title;
+        entity.Description = model.Description;
+
+        return await _context.SaveChangesAsync() == 1;
+    }
+
+    // Delete
+    public async Task<bool> DeletePlaylistByIdAsync(int playlistId)
+    {
+        var playlistEntity = await _context.Playlists.FirstOrDefaultAsync(p => p.PlaylistId == playlistId);
+
+        if (playlistEntity is null)
+        {
+            return false;
+        }
+
+        _context.Playlists.Remove(playlistEntity);
+
+        return await _context.SaveChangesAsync() == 1;
+    }
 }
