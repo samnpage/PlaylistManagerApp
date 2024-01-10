@@ -4,6 +4,7 @@ namespace PlaylistManagerApp.Models.Playlist;
 
 public class PlaylistEdit
 {
+    public int PlaylistId { get; set; }
     [Required, MaxLength(50)]
     public string Title { get; set; } = string.Empty;
 
