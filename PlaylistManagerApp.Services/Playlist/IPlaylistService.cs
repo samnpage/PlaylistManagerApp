@@ -4,12 +4,16 @@ namespace PlaylistManagerApp.Services.Playlist;
 
 public interface IPlaylistService
 {
-    // Task AddSongToPlaylist(int playlistId, SearchResult song);
-
     // Create
     Task CreatePlaylistAsync(PlaylistCreate playlist);
 
     // Read
     Task<IEnumerable<PlaylistListItem>> GetAllPlaylistsAsync();
-    Task<PlaylistDetail?> GetPlaylistByIdAsync(int id);
+    Task<PlaylistDetail?> GetPlaylistByIdAsync(int playlistId);
+
+    // Update
+    Task<bool> EditPlaylistByIdAsync(int playlistId, PlaylistEdit model);
+
+    // Delete
+    Task<bool> DeletePlaylistByIdAsync(int playlistId);
 }
