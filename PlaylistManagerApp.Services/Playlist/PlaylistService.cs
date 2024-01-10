@@ -65,7 +65,6 @@ public class PlaylistService : IPlaylistService
             return false;
         }
 
-        entity.PlaylistId = model.PlaylistId;
         entity.Title = model.Title;
         entity.Description = model.Description;
 
