@@ -1,0 +1,24 @@
+@model PlaylistManagerApp.Models.Playlist.PlaylistEdit
+@{
+    ViewData["Title"] = "Edit Playlist";
+}
+
+<h1>Edit Playlist</h1>
+<hr>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="post" asp-action="Edit" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Title" class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Description" class="form-label">Description</label>
+        <input asp-for="Description" class="form-control" required>
+    </div>
+    <div class="col d-flex justify-content-between align-items-baseline">
+        <button type="submit" value="Edit">Edit Playlist</button>
+    </div>   
+</form>
+<hr>
+
+<a asp-action="Details">Back to Playlist</a>
