@@ -1,4 +1,4 @@
-@model PlaylistManagerApp.Models.Playlist.PlaylistDetail
+@model PlaylistManagerApp.Models.Playlist.PlaylistDetailWithSongs
 @{
     ViewData["Title"] = Model.Title;
 }
@@ -29,6 +29,28 @@
     <dd class="col-sm-10">
         @Html.DisplayFor(model => model.Description)
     </dd>
+    <hr>
+    <dd class="col-sm-10">
+    @if (Model.Songs != null && Model.Songs.Any())
+    {
+        foreach (var song in Model.Songs)
+        {
+            <div class="row">
+                <div class="col-md-8">
+                    <p>@song.Title by @song.Artist</p>
+                </div>
+                <div class="col-md-4">
+                    <a asp-action="RemoveSong" class="btn btn-danger" type="submit">Remove Song</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No songs found for the playlist.</p>
+    }
+</dd>
+
 </dl>
 
 <div>
