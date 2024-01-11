@@ -1,4 +1,4 @@
-@model PlaylistManagerApp.Models.Playlist.PlaylistDetailWithSongs
+@model PlaylistManagerApp.Models.Playlist.PlaylistDetailsViewModel
 @{
     ViewData["Title"] = Model.Title;
 }
@@ -6,10 +6,10 @@
 <h1>@Model.Title</h1>
 <div>
     <h2>Playlist Details</h2>
-    <a asp-controller="Playlist" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-link align-self-center">
+    <a asp-controller="Playlist" asp-action="Edit" asp-route-id="@Model.PlaylistId" class="btn btn-link align-self-center">
         Edit Playlist
     </a>
-    <a asp-controller="Playlist" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-link align-self-center">
+    <a asp-controller="Playlist" asp-action="Delete" asp-route-id="@Model.PlaylistId" class="btn btn-link align-self-center">
         Delete Playlist
     </a>
 </div>
@@ -31,16 +31,16 @@
     </dd>
     <hr>
     <dd class="col-sm-10">
-    @if (Model.Songs != null && Model.Songs.Any())
+    @if (Model.Song != null && Model.Song.Any())
     {
-        foreach (var song in Model.Songs)
+        foreach (var song in Model.Song)
         {
             <div class="row">
                 <div class="col-md-8">
                     <p>@song.Title by @song.Artist</p>
                 </div>
                 <div class="col-md-4">
-                    <a asp-action="RemoveSong" class="btn btn-danger" type="submit">Remove Song</a>
+                    <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove Song</a>
                 </div>
             </div>
         }
