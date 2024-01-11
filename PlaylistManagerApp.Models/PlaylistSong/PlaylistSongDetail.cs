@@ -5,8 +5,7 @@ namespace PlaylistManagerApp.Models.PlaylistSong;
 
 public class PlaylistSongDetail
 {
-    public int SongId { get; set; }
-    public List<SongListItem> Songs { get; set; }
+    public int PlaylistSongId { get; set; }
     public int PlaylistId { get; set; }
-    public List<PlaylistDetail> Playlist { get; set; }
+    public int SongId { get; set; }
 }
