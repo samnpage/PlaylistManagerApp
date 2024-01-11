@@ -69,15 +69,19 @@ public class PlaylistController : Controller
     {
         if (ModelState.IsValid)
         {
-            var playlist = _playlistService.EditPlaylistByIdAsync(id, model);
-            if (playlist == null)
-            {
-                return NotFound();
-            }
-            if (playlist != null)
-            {
-                return RedirectToAction(nameof(Details)); // Redirect to the playlist index
-            }
+            await _playlistService.EditPlaylistByIdAsync(id, model);
+            
+            return RedirectToAction("Index"); // Redirect to the playlist index
+
+            // var playlist = await _playlistService.EditPlaylistByIdAsync(id, model);
+            // if (playlist = false)
+            // {
+            //     return NotFound();
+            // }
+            // if (playlist = true)
+            // {
+            //     return RedirectToAction("Index"); // Redirect to the playlist index
+            // }
         }
 
         TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
