@@ -18,5 +18,5 @@ public class SongRatingEntity
     public bool IsFavorite { get; set; }
 
     [Required, Range(0,5)]
-    public int Rating { get; set; }
+    public double Rating { get; set; }
 }
