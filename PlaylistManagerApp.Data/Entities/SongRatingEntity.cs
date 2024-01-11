@@ -7,6 +7,8 @@ namespace PlaylistManagerApp.Data.Entities;
 [PrimaryKey(nameof(UserId), nameof(SongId))]
 public class SongRatingEntity
 {
+    public int SongRatingId { get; set; }
+    
     [ForeignKey(nameof(User))]
     public int UserId { get; set; }
     public virtual UserEntity User { get; set; } = null!;
