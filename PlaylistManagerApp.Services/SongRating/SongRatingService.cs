@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using PlaylistManagerApp.Data;
+using PlaylistManagerApp.Data.Entities;
 using PlaylistManagerApp.Models.SongRating;
 
 namespace PlaylistManagerApp.Services.SongRating;
@@ -14,9 +16,16 @@ public class SongRatingService : ISongRatingService
     }
 
     // Create
-    public Task<bool> CreateSongRatingAsync(SongRatingCreate model)
+    public async Task<bool> CreateSongRatingAsync(SongRatingCreate model)
     {
-        throw new NotImplementedException();
+        SongRatingEntity entity = new()
+        {
+            SongId = model.SongId,
+            Rating = model.Rating
+        };
+
+        _context.Ratings.Add(entity);
+        return await _context.SaveChangesAsync() == 1;
     }
 
     // Get by Id
@@ -44,4 +53,10 @@ public class SongRatingService : ISongRatingService
     {
         throw new NotImplementedException();
     }
+
+    //Helper methods
+    // public bool SongRatingExists(int id)
+    // {
+    //     return _context.Ratings.Any(r => r.SongRatingId == id);
+    // }
 }
