@@ -40,7 +40,8 @@
                     <p>@song.Title by @song.Artist</p>
                 </div>
                 <div class="col-md-4">
-                    <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove Song</a>
+                    <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove</a>
+                    <a asp-Controller="SongRating" asp-action="Create" asp-route-id="@song.PlaylistSongId" class="btn-danger" type="submit">Rate</a>
                 </div>
             </div>
         }
