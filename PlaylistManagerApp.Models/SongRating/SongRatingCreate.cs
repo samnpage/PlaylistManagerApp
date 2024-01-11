@@ -10,5 +10,5 @@ public class SongRatingCreate
 
     [Required, Range(1, 5)]
     [Display(Name = "Rating")]
-    public double Score { get; set; }
+    public double Rating { get; set; }
 }
