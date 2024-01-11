@@ -42,30 +42,18 @@ public class PlaylistController : Controller
         {
             await _playlistService.CreatePlaylistAsync(playlist);
 
-            return RedirectToAction("Index", "Playlist"); // Redirect to the playlist index
+            return RedirectToAction("Index", "Playlist");
         }
 
-        return View(playlist); // Return to the view with validation errors
+        return View(playlist);
     }
 
-    // GET: /Playlist/Details/#
-    [HttpGet]
+    // Get: /Playlist/Details/#
     public async Task<IActionResult> Details(int id)
     {
-        var playlist = await _playlistService.GetPlaylistByIdAsync(id);
         var songDetails = await _playlistSongService.ViewPlaylistSongByPlaylistId(id);
 
-        if (playlist is null)
-            return RedirectToAction(nameof(Index));
-
-        var model = new PlaylistDetailWithSongs
-        {
-            Id = playlist.Id,
-            Title = playlist.Title,
-            Description = playlist.Description,
-            Songs = songDetails
-        };
-        return View(model);
+        return View(songDetails);
     }
 
     // GET: /Playlist/Edit/#
@@ -163,7 +151,7 @@ public class PlaylistController : Controller
     {
         await _playlistSongService.DeletePlaylistSongAsync(id);
 
-        return View();
+        return RedirectToAction("Index");
     }
 
 }
