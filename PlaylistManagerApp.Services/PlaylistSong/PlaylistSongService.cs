@@ -1,21 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using PlaylistManagerApp.Data;
 using PlaylistManagerApp.Data.Entities;
+using PlaylistManagerApp.Models.Playlist;
 using PlaylistManagerApp.Models.PlaylistSong;
-using PlaylistManagerApp.Models.Song;
-using PlaylistManagerApp.Services.Song;
 
 namespace PlaylistManagerApp.Services.PlaylistSong;
 
 public class PlaylistSongService : IPlaylistSongService
 {
     private readonly PlaylistManagerDbContext _context;
-    private readonly ISongService _songService;
 
-    public PlaylistSongService(PlaylistManagerDbContext context, ISongService songService)
+    public PlaylistSongService(PlaylistManagerDbContext context)
     {
         _context = context;
-        _songService = songService;
     }
 
     // Create
@@ -48,19 +45,40 @@ public class PlaylistSongService : IPlaylistSongService
     }
 
     // Read
-    public async Task<List<SongListItem>> ViewPlaylistSongByPlaylistId(int id)
+    public async Task<PlaylistDetailsViewModel> ViewPlaylistSongByPlaylistId(int id)
     {
-        var songDetails = await _context.PlaylistSongs
+        PlaylistDetailsViewModel details = new()
+        {
+            PlaylistId = id,
+            Song = new List<PlaylistSongListItem>(),
+        };
+
+        var playlistSongs = await _context.PlaylistSongs
+            .Include(ps => ps.Song)
+            .Include(ps => ps.Playlist)
             .Where(ps => ps.PlaylistId == id && ps.Song != null)
-            .Select(ps => new SongListItem
-            {
-                SongId = ps.Song.SongId,
-                Title = ps.Song.Title,
-                Artist = ps.Song.Artist
-            })
             .ToListAsync();
 
-        return songDetails;
+        var songList = new List<PlaylistSongListItem>();
+
+        foreach (var song in playlistSongs)
+        {
+            details.Title = song.Playlist.Title;
+            details.Description = song.Playlist.Description;
+
+            songList.Add(new PlaylistSongListItem
+            {   
+                PlaylistSongId = song.PlaylistSongId,
+                SongId = song.SongId,
+                Title = song.Song.Title,
+                Artist = song.Song.Artist,
+                DateAdded = song.Song.DateAdded
+            });  
+        }
+
+        details.Song = songList;
+
+        return details;
     }
 
     // Update
