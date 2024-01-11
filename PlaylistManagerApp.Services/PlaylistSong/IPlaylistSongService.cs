@@ -1,3 +1,4 @@
+using PlaylistManagerApp.Models.Playlist;
 using PlaylistManagerApp.Models.PlaylistSong;
 using PlaylistManagerApp.Models.Song;
 
@@ -9,7 +10,7 @@ public interface IPlaylistSongService
     Task<bool> CreatePlaylistSongAsync(PlaylistSongCreate model);
 
     //Read
-    Task<List<SongListItem>> ViewPlaylistSongByPlaylistId(int id);
+    Task<PlaylistDetailsViewModel> ViewPlaylistSongByPlaylistId(int id);
     
     //Update
     
