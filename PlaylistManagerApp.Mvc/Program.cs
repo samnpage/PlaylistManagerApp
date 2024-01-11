@@ -1,6 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Configuration;
 using PlaylistManagerApp.Data;
 using PlaylistManagerApp.Data.Entities;
+using PlaylistManagerApp.Services.Playlist;
+using PlaylistManagerApp.Services.PlaylistSong;
+using PlaylistManagerApp.Services.Search;
+using PlaylistManagerApp.Services.Song;
 using PlaylistManagerApp.Services.User;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +18,15 @@ builder.Services.AddDbContext<PlaylistManagerDbContext>(
     )
 );
 
+builder.Services.AddHttpClient<ISearchService, SearchService>();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<IUserService, UserService>();
-// builder.Services.AddScoped<IPlaylistService, PlaylistService();
-// builder.Services.AddScoped<ISongService, SongService();
-// builder.Services.AddScoped<IRatingService, RatingService();
+builder.Services.AddScoped<IPlaylistService, PlaylistService>();
+builder.Services.AddScoped<ISongService, SongService>();
+builder.Services.AddScoped<IPlaylistSongService, PlaylistSongService>();
+// builder.Services.AddScoped<IRatingService, RatingService>();
 // builder.Services.AddScoped<IFavoriteService, FavoriteService();
 
 // Enable using Identity Managers (Users, SignIn, Password)
@@ -52,5 +62,6 @@ app.UseAuthentication();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

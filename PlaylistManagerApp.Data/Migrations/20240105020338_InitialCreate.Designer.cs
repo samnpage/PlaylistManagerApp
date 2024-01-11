@@ -12,7 +12,7 @@ using PlaylistManagerApp.Data;
 namespace PlaylistManagerApp.Data.Migrations
 {
     [DbContext(typeof(PlaylistManagerDbContext))]
-    [Migration("20231222005333_InitialCreate")]
+    [Migration("20240105020338_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -226,8 +226,12 @@ namespace PlaylistManagerApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpotifyTrackID")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SpotifyTrackID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()

@@ -1,0 +1,32 @@
+@model List<PlaylistManagerApp.Models.Search.SearchResult>
+
+<h2>Search Results</h2>
+
+<ul>
+    @foreach (var result in Model)
+    {
+        <li>
+            @result.Name by @string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())
+            <form id="addToPlaylistForm" asp-controller="Playlist" asp-action="Select" method="post">
+                <input type="hidden" name="SpotifyTrackID" value="@result.Id" />
+                <input type="hidden" name="Title" value="@result.Name" />
+                <input type="hidden" name="Artist"
+                    value="@string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())" />
+                <button type="submit">Add to playlist</button>
+            </form>
+        </li>
+    }
+</ul>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#addToPlaylistForm').submit(function (e) {
+            @* // Prevent the default form submission
+            e.preventDefault();
+
+            // Redirect to the playlist selection view
+            window.location.href = '/Playlist/Select'; *@
+        });
+    });
+</script>

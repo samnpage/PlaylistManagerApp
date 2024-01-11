@@ -13,7 +13,7 @@ public class AccountController : Controller
         _userService = userService;
     }
 
-    public async Task<IActionResult> Register()
+    public IActionResult Register()
     {
         return View();
     }
@@ -37,7 +37,7 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Home");
     }
 
-    public async Task<IActionResult> Login()
+    public IActionResult Login()
     {
         return View();
     }

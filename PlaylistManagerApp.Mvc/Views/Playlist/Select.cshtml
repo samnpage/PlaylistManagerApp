@@ -1,0 +1,25 @@
+@model PlaylistManagerApp.Models.Playlist.PlaylistSelect
+
+@if (TempData["ErrorMsg"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Song already exists in the selected playlist"]
+        <p>Song already in selected playlist</p>
+    </div>
+}
+
+<h2>Select Playlist</h2>
+
+<!-- Display playlist selection options -->
+<form asp-controller="Playlist" asp-action="Add" method="post">
+    <input name="SongId" type="hidden" value="@Model.SongId" />
+    <label for="selectedPlaylist">Select Playlist:</label>
+    <select name="playlistId" id="selectedPlaylist">
+        @foreach (var playlist in Model.Playlists)
+        {
+            <option value="@playlist.Id">@playlist.Title</option>
+        }
+    </select>
+
+    <button name="submit" type="submit">Add to Selected Playlist</button>
+</form>
