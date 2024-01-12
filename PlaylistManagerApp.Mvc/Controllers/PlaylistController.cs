@@ -72,16 +72,6 @@ public class PlaylistController : Controller
             await _playlistService.EditPlaylistByIdAsync(id, model);
             
             return RedirectToAction("Index"); // Redirect to the playlist index
-
-            // var playlist = await _playlistService.EditPlaylistByIdAsync(id, model);
-            // if (playlist = false)
-            // {
-            //     return NotFound();
-            // }
-            // if (playlist = true)
-            // {
-            //     return RedirectToAction("Index"); // Redirect to the playlist index
-            // }
         }
 
         TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
