@@ -6,6 +6,7 @@
 <h1>@Model.Title</h1>
 <div>
     <h2>Playlist Details</h2>
+    <a asp-controller="Search" asp-action="Index" class="btn btn-link">Add Song</a>
     <a asp-controller="Playlist" asp-action="Edit" asp-route-id="@Model.PlaylistId" class="btn btn-link align-self-center">
         Edit Playlist
     </a>
@@ -41,7 +42,6 @@
                 </div>
                 <div class="col-md-4">
                     <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove</a>
-                    <a asp-Controller="SongRating" asp-action="Create" asp-route-id="@song.PlaylistSongId" class="btn-danger" type="submit">Rate</a>
                 </div>
             </div>
         }
