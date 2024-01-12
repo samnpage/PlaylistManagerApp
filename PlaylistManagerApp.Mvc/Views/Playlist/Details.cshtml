@@ -32,7 +32,8 @@
     <hr>
     <dd class="col-sm-10">
     @if (Model.Song != null && Model.Song.Any())
-    {
+    {   
+        <a asp-controller="Search" asp-action="Index" class="btn-link">Add Song</a>
         foreach (var song in Model.Song)
         {
             <div class="row">
@@ -40,7 +41,7 @@
                     <p>@song.Title by @song.Artist</p>
                 </div>
                 <div class="col-md-4">
-                    <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove Song</a>
+                    <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove</a>
                 </div>
             </div>
         }
