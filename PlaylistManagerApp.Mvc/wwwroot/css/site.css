@@ -1,6 +1,8 @@
 html {
   font-size: 14px;
   font-family:'Product Sans', 'Arial';
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -13,15 +15,22 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+/* header {
+  background-color: #171717;
+} */
+
+.container {
+  padding-top: 20px;
 }
 
 body {
   margin-bottom: 60px;
   background-color: #202124;
   color: whitesmoke;
+}
+
+h1 {
+  margin-bottom: 20px;
 }
 
 .nav-link:hover{
@@ -35,7 +44,7 @@ body {
 /* Search/Home */
 
 .search-container{
-  margin-top: 200px;
+  margin-top: 180px;
   display: flex;
   justify-content: center;
 }
@@ -200,4 +209,140 @@ body {
 
 #username-display {
   color: #898b8c; 
+}
+
+/* Playlists */
+
+.table-container {
+  border-radius: 5px;
+}
+
+.playlist-nav {
+  margin: 20px 0;
+  font-size: large;
+}
+
+.playlist-nav .pad-left {
+  padding-left: 15px;
+}
+
+/* .playlist-nav .btn-link img {
+  padding-right: 5px;
+} */
+
+.playlist-nav-link {
+  text-decoration: none;
+  padding: 0 15px 0 0;
+}
+
+.playlist-nav-link:hover {
+  color: #258cfb;
+}
+
+.playlist-table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.col-3 {
+  padding-right: 10px;
+}
+
+.playlist-table .playlist-head th {
+  color: rgb(154, 155, 156);
+}
+
+.playlist-row td {
+  padding: 10px 10px 10px 0;
+  font-size: x-large;
+  color: rgb(154, 155, 156);
+}
+
+/* .playlist-body {-list
+  margin: 0 10px;
+} */
+
+.playlist-table .playlist-head th:last-child,
+.playlist-table .playlist-list-body td:last-child {
+  text-align: right;
+}
+
+.playlist-table .playlist-list-body td:last-child {
+  font-size: large;
+}
+
+.playlist-table .playlist-list-body .first-col {
+  color: whitesmoke;
+}
+
+.playlist-table .playlist-list-body .second-col {
+  font-size: large; 
+}
+
+.playlist-row:hover {
+  background-color: #303134;
+}
+
+.playlist-link {
+  text-decoration: none;
+  font-weight: 500;
+  color: whitesmoke;
+}
+
+.playlist-link:hover {
+  color:#9c9ea0;
+}
+
+.form-container {
+  display: block;
+  background-color: #202124;
+}
+
+.form-container form {
+  display: inline-block;
+  background-color: #202124;  
+  color: whitesmoke;
+  border: none;
+  width: 100%;
+}
+
+#delete-btn {
+  color: #FF1F1F;
+}
+
+#delete-btn:hover {
+  color: #ed6e7b;
+}
+
+.remove-song {
+  font-size: medium;
+  color: #BB2D3B;
+}
+
+.playlist-body td{
+  font-size: 15px;
+}
+
+.playlist-body .playlist-row .first-col {
+  color: whitesmoke;
+}
+
+.playlist-body .playlist-row .third-col {
+  text-align: center;
+}
+
+.playlist-body .playlist-row .third-col {
+  text-align: right;
+}
+
+.remove-song:hover {
+  color: #ed6e7b
+}
+
+.song-list {
+  font-size: small;
+}
+
+.add-song-Icon {
+  padding-bottom: 10px;
 }
