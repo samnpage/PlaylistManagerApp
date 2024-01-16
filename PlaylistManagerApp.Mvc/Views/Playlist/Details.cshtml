@@ -11,15 +11,6 @@
 
 <div>
     <dl class="row">
-        @* <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt> *@
-        @* <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd> *@
-        @* <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt> *@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
@@ -30,18 +21,20 @@
 
 <div class="table-container" id="song-list">
     <div>
-            <div class="playlist-nav">
-                <a asp-controller="Search" asp-action="Index" class="playlist-nav-link"><img src="~/Assets/add.png" alt="Add Song" height="23px">
-                </a>|
-                <a asp-controller="Playlist" asp-action="Edit" asp-route-id="@Model.PlaylistId" class="playlist-nav-link pad-left">
-                    Edit
-                </a>|
-                <a asp-controller="Playlist" asp-action="Delete" asp-route-id="@Model.PlaylistId" class="playlist-nav-link pad-left"
-                id="delete-btn">
-                    Delete
-                </a>
-            </div>
+        <div class="playlist-nav">
+            <a asp-controller="Search" asp-action="Index" class="playlist-nav-link"><img src="~/Assets/add.png"
+                    alt="Add Song" height="23px">
+            </a>|
+            <a asp-controller="Playlist" asp-action="Edit" asp-route-id="@Model.PlaylistId"
+                class="playlist-nav-link pad-left">
+                Edit
+            </a>|
+            <a asp-controller="Playlist" asp-action="Delete" asp-route-id="@Model.PlaylistId"
+                class="playlist-nav-link pad-left" id="delete-btn">
+                Delete
+            </a>
         </div>
+    </div>
 
     @if (Model.Song != null && Model.Song.Any())
     {
@@ -83,34 +76,6 @@
         </p>
     }
 </div>
-
-@* old code *@
-@* <div>
-<dl>
-<dd class="col-sm-10">
-@if (Model.Song != null && Model.Song.Any())
-{
-<a asp-controller="Search" asp-action="Index" class="btn-link">Add Song</a>
-foreach (var song in Model.Song)
-{
-<div class="row">
-<div class="col-md-8">
-<p>@song.Title by @song.Artist</p>
-</div>
-<div class="col-md-4">
-<a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove</a>
-</div>
-</div>
-}
-}
-else
-{
-<p>There are no songs found for the playlist. Click <a asp-controller="Search" asp-action="Index">here</a> if you would
-like to add a song.</p>
-}
-</dd>
-</dl>
-</div> *@
 
 <div class="playlist-nav">
     <a asp-action="Index" class="playlist-nav-link">Back to Playlists</a>
