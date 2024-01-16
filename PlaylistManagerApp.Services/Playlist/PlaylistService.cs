@@ -21,7 +21,8 @@ public class PlaylistService : IPlaylistService
         PlaylistEntity entity = new()
         {
             Title = playlist.Title,
-            Description = playlist.Description
+            Description = playlist.Description,
+            DateAdded = DateTime.Now
         };
 
         _context.Playlists.Add(entity);
@@ -35,7 +36,9 @@ public class PlaylistService : IPlaylistService
             .Select(l => new PlaylistListItem()
             {
                 Id = l.PlaylistId,
-                Title = l.Title
+                Title = l.Title,
+                Description = l.Description,
+                DateAdded = l.DateAdded
             })
             .ToListAsync();
 
