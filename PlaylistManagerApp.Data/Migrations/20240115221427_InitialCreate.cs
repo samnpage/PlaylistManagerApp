@@ -34,7 +34,8 @@ namespace PlaylistManagerApp.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -218,32 +219,6 @@ namespace PlaylistManagerApp.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Ratings",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    SongId = table.Column<int>(type: "int", nullable: false),
-                    IsFavorite = table.Column<bool>(type: "bit", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ratings", x => new { x.UserId, x.SongId });
-                    table.ForeignKey(
-                        name: "FK_Ratings_Songs_SongId",
-                        column: x => x.SongId,
-                        principalTable: "Songs",
-                        principalColumn: "SongId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Ratings_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -282,11 +257,6 @@ namespace PlaylistManagerApp.Data.Migrations
                 column: "SongId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ratings_SongId",
-                table: "Ratings",
-                column: "SongId");
-
-            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "Users",
                 column: "NormalizedEmail");
@@ -321,19 +291,16 @@ namespace PlaylistManagerApp.Data.Migrations
                 name: "PlaylistSongs");
 
             migrationBuilder.DropTable(
-                name: "Ratings");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Playlists");
 
             migrationBuilder.DropTable(
                 name: "Songs");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }

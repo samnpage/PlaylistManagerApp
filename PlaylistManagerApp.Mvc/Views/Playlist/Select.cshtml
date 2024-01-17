@@ -4,22 +4,32 @@
 {
     <div class="alert alert-danger">
         @TempData["Song already exists in the selected playlist"]
-        <p>Song already in selected playlist</p>
+        <p>Song already in the selected playlist</p>
     </div>
 }
 
-<h2>Select Playlist</h2>
+<div class="playlist-selection-container">
+    <h2>Select Playlist</h2>
 
-<!-- Display playlist selection options -->
-<form asp-controller="Playlist" asp-action="Add" method="post">
-    <input name="SongId" type="hidden" value="@Model.SongId" />
-    <label for="selectedPlaylist">Select Playlist:</label>
-    <select name="playlistId" id="selectedPlaylist">
-        @foreach (var playlist in Model.Playlists)
-        {
-            <option value="@playlist.Id">@playlist.Title</option>
-        }
-    </select>
+    <form class="playlist-form" asp-controller="Playlist" asp-action="Add" method="post">
+        <input name="SongId" type="hidden" value="@Model.SongId" />
+        
+        <div class="form-group" style="margin-top: 15px">
+            <label for="selectedPlaylist" hidden></label>
+            <select class="form-control dropdown" name="playlistId" id="selectedPlaylist">
+                @foreach (var playlist in Model.Playlists)
+                {
+                    <option value="@playlist.Id">@playlist.Title</option>
+                }
+            </select>
+        </div>
 
-    <button name="submit" type="submit">Add to Selected Playlist</button>
-</form>
+        <div class="form-group" style="margin-top: 15px;">
+            <button class="btn btn-secondary" name="submit" type="submit">Add to Selected Playlist</button>
+        </div>
+    </form>
+
+    <div class=" playlist-nav">
+        <a asp-controller="Search" asp-action="Index" class="playlist-nav-link"> Back to search</a>
+    </div>
+</div>

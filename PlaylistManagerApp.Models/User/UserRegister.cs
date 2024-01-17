@@ -5,11 +5,11 @@ namespace PlaylistManagerApp.Models.User;
 public class UserRegister
 {
     [Required(ErrorMessage = "Name is required")]
-    [StringLength(10, ErrorMessage = "Must be between 4 and 10 characters", MinimumLength = 3)]
+    [StringLength(50, ErrorMessage = "Must be between 4 and 50 characters", MinimumLength = 3)]
     public string Name { get; set; } = null!;
 
     [Required(ErrorMessage = "Username is required")]
-    [StringLength(10, ErrorMessage = "Must be between 4 and 10 characters", MinimumLength = 3)]
+    [StringLength(20, ErrorMessage = "Must be between 4 and 20 characters", MinimumLength = 3)]
     public string UserName { get; set; } = null!;
 
     [Required(ErrorMessage = "Email is required")]
