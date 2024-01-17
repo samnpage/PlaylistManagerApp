@@ -15,10 +15,6 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-/* header {
-  background-color: #171717;
-} */
-
 .container {
   padding-top: 20px;
 }
@@ -31,6 +27,12 @@ body {
 
 h1 {
   margin-bottom: 20px;
+}
+
+h6 {
+  margin: 0;
+  padding: 5px 10px;
+  color: #6D7176;
 }
 
 .nav-link:hover{
@@ -95,6 +97,101 @@ h1 {
 .search-footer {
   background-color: #171717;
   border: none;
+}
+
+/* Search Results */
+.results-container {
+  margin: 0 100px;
+  padding: 20px 50px;
+  border: 1px solid #6D7176;
+  box-shadow: 10px 10px 10px 5px #171717;
+}
+
+.results-search-bar-container {
+  padding: 0 10px;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.results-search-input {
+  background-color: #202124;
+  border: 2px solid #6D7176;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.results-search-input:hover {
+  background-color: #303134;
+  box-shadow: 0 0 10px;
+}
+
+.results-search-input:focus {
+  background-color: #303134;
+  color: whitesmoke;
+}
+
+.songs-container {
+  padding: 0 10px;
+}
+
+/* .results-container {width: fit-content;} */
+.results-list {
+  list-style: none;
+  padding: 0;
+  display: block;
+  font-size: large;
+}
+
+.results-row {
+  padding: 10px 10px;
+  display: flex;
+  position: relative;
+}
+
+.results-row:hover {
+  background-color: #303134;
+}
+
+.results-add {
+  display: flex;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+}
+
+#results-title {
+  display: block;
+}
+
+#results-artist {
+  color: #9a9b9c;
+  font-size: medium;
+  font-weight: 700;
+  letter-spacing: .025em;
+  display: block;
+}
+
+/* Playlist Select */
+
+#selectedPlaylist {
+  width: 25%;
+  background-color: #202124;
+  color: whitesmoke;
+  font-size: x-large;
+}
+
+#selectedPlaylist:hover {
+  background-color: #303134;
+}
+
+.dropdown {
+  width: 300px
+}
+
+.dropdown option {
+  padding: 10px;
 }
 
 /* Register */
