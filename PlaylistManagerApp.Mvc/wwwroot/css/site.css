@@ -104,6 +104,7 @@ h6 {
   margin: 0 100px;
   padding: 20px 50px;
   border: 1px solid #6D7176;
+  border-radius: 10px;
   box-shadow: 10px 10px 10px 5px #171717;
 }
 
