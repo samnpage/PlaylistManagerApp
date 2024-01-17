@@ -3,57 +3,80 @@
     ViewData["Title"] = Model.Title;
 }
 
+<div class="playlist-nav">
+    <a asp-action="Index" class="playlist-nav-link">Back to Playlists</a>
+</div>
+
 <h1>@Model.Title</h1>
+
 <div>
-    <h2>Playlist Details</h2>
-    <a asp-controller="Playlist" asp-action="Edit" asp-route-id="@Model.PlaylistId" class="btn btn-link align-self-center">
-        Edit Playlist
-    </a>
-    <a asp-controller="Playlist" asp-action="Delete" asp-route-id="@Model.PlaylistId" class="btn btn-link align-self-center">
-        Delete Playlist
-    </a>
+    <dl class="row">
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
 </div>
 
 <hr>
 
-<dl class="row">
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Title)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Title)
-    </dd>
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Description)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Description)
-    </dd>
-    <hr>
-    <dd class="col-sm-10">
+<div class="table-container" id="song-list">
+    <div>
+        <div class="playlist-nav">
+            <a asp-controller="Search" asp-action="Index" class="playlist-nav-link"><img src="~/Assets/add.png"
+                    alt="Add Song" height="23px">
+            </a>|
+            <a asp-controller="Playlist" asp-action="Edit" asp-route-id="@Model.PlaylistId"
+                class="playlist-nav-link pad-left">
+                Edit
+            </a>|
+            <a asp-controller="Playlist" asp-action="Delete" asp-route-id="@Model.PlaylistId"
+                class="playlist-nav-link pad-left" id="delete-btn">
+                Delete
+            </a>
+        </div>
+    </div>
+
     @if (Model.Song != null && Model.Song.Any())
-    {   
-        <a asp-controller="Search" asp-action="Index" class="btn-link">Add Song</a>
-        foreach (var song in Model.Song)
-        {
-            <div class="row">
-                <div class="col-md-8">
-                    <p>@song.Title by @song.Artist</p>
-                </div>
-                <div class="col-md-4">
-                    <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="btn btn-danger" type="submit">Remove</a>
-                </div>
-            </div>
-        }
+    {
+        <table class="playlist-table">
+            <thead class="playlist-head">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Artist</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col" class="col-3">Remove</th>
+                </tr>
+            </thead>
+            <tbody class="playlist-body song-list">
+                @foreach (var song in Model.Song)
+                {
+                    <tr class="playlist-row">
+                        <td class="first-col">
+                            @song.Title
+                        </td>
+                        <td class="second-col">
+                            @song.Artist
+                        </td>
+                        <td class="second-col">
+                            @song.DateAdded
+                        </td>
+                        <td class="third-col">
+                            <a asp-action="RemoveSong" asp-route-id="@song.PlaylistSongId" class="remove-song"
+                                type="submit"><img src="~/Assets/delete.png" height="20px"></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
     else
     {
-        <p>There are no songs found for the playlist. Click <a asp-controller="Search" asp-action="Index">here</a> if you would like to add a song.</p>
+        <p>
+            There are no songs found for the playlist.
+        </p>
     }
-</dd>
+</div>
 
-</dl>
-
-<div>
-    <a asp-action="Index">Back to Playlists</a>
+<div class="playlist-nav">
+    <a asp-action="Index" class="playlist-nav-link">Back to Playlists</a>
 </div>

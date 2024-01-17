@@ -1,8 +1,19 @@
-﻿@{
+﻿@model string
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Playlist Manager!</h1>
-    <p>An application that lets you import songs from spotify, allows you to create playlists!</p>
+<div class="text-center search-container">
+    <form asp-controller="search" method="post" asp-action="Results" class="search-form">
+        <h1 class="search-header">Playlist Pilot <img src="~/Assets/GrayPlaneLeft.png" height="75px" alt="plane"></h1>
+        <label for="query"></label>
+        <div class="input-goup">
+            <input type="text" name="query" id="query" class="search-bar" required />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary search-button">
+                    <i class="fa fa-search"></i> Search Song 
+                </button>
+            </div>
+        </div>
+    </form>
 </div>

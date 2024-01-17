@@ -50,6 +50,8 @@ public class PlaylistSongService : IPlaylistSongService
         PlaylistDetailsViewModel details = new()
         {
             PlaylistId = id,
+            Title = await GetPlaylistTitleByIdAsync(id),
+            Description = await GetPlaylistDescriptionByIdAsync(id),
             Song = new List<PlaylistSongListItem>(),
         };
 
@@ -59,24 +61,17 @@ public class PlaylistSongService : IPlaylistSongService
             .Where(ps => ps.PlaylistId == id && ps.Song != null)
             .ToListAsync();
 
-        var songList = new List<PlaylistSongListItem>();
-
         foreach (var song in playlistSongs)
         {
-            details.Title = song.Playlist.Title;
-            details.Description = song.Playlist.Description;
-
-            songList.Add(new PlaylistSongListItem
-            {   
+            details.Song.Add(new PlaylistSongListItem
+            {
                 PlaylistSongId = song.PlaylistSongId,
                 SongId = song.SongId,
                 Title = song.Song.Title,
                 Artist = song.Song.Artist,
                 DateAdded = song.Song.DateAdded
-            });  
+            });
         }
-
-        details.Song = songList;
 
         return details;
     }
@@ -100,5 +95,18 @@ public class PlaylistSongService : IPlaylistSongService
         }
 
         return true;
+    }
+    
+    // Helper Methods
+    // Method that gets a playlist title by Id return string
+    private async Task<string> GetPlaylistTitleByIdAsync(int id)
+    {
+        return (await _context.Playlists.FirstOrDefaultAsync(r => r.PlaylistId == id)).Title;
+    }
+
+    // Method that get playlist description by Id retrun string 
+    private async Task<string> GetPlaylistDescriptionByIdAsync(int id)
+    {
+        return (await _context.Playlists.FirstOrDefaultAsync(r => r.PlaylistId == id)).Description;
     }
 }

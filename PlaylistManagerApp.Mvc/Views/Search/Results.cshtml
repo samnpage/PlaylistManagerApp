@@ -1,32 +1,58 @@
 @model List<PlaylistManagerApp.Models.Search.SearchResult>
 
-<h2>Search Results</h2>
+<div class="results-container">
+    <div class="results-search-bar-container">
+    <form asp-controller="search" method="post" asp-action="Results" class="results-search-bar-form">
+        @* <h1 class="search-header">Playlist Pilot</h1> *@
+        <label for="query"></label>
+        <div class="results-search-bar-container">
+            <input type="text" name="query" id="query" class="results-search-input" placeholder="Search" required />
+            <div>
+                <button type="submit" class="btn btn-outline-secondary">
+                    <i class="fa fa-search"></i> 
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
-<ul>
-    @foreach (var result in Model)
-    {
-        <li>
-            @result.Name by @string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())
-            <form id="addToPlaylistForm" asp-controller="Playlist" asp-action="Select" method="post">
-                <input type="hidden" name="SpotifyTrackID" value="@result.Id" />
-                <input type="hidden" name="Title" value="@result.Name" />
-                <input type="hidden" name="Artist"
-                    value="@string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())" />
-                <button type="submit">Add to playlist</button>
-            </form>
-        </li>
-    }
-</ul>
+<div class="songs-container">
+    <h6>Search Results</h6>
+    <ul class="results-list">
+        @foreach (var result in Model)
+        {
+            <li class="results-row">
+                <div class="results-text">
+                    <span id="results-title">
+                        @result.Name
+                    </span>
+                    <span id="results-artist">
+                        @string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())
+                    </span>
+                </div>
+
+                <form class="results-add" id="addToPlaylistForm" asp-controller="Playlist" asp-action="Select"
+                    method="post">
+                    <input type="hidden" name="SpotifyTrackID" value="@result.Id" />
+                    <input type="hidden" name="Title" value="@result.Name" />
+                    <input type="hidden" name="Artist"
+                        value="@string.Join(", ", result.Artists?.Select(a => a.Name) ?? Enumerable.Empty<string>())" />
+                    <input id="playlist-add-icon" type="image" src="~/Assets/CirclePlusIcon.png" height="40px" alt="submit" >
+                </form>
+            </li>
+        }
+    </ul>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#addToPlaylistForm').submit(function (e) {
-            @* // Prevent the default form submission
-            e.preventDefault();
+    @* // Prevent the default form submission
+                e.preventDefault();
 
-            // Redirect to the playlist selection view
-            window.location.href = '/Playlist/Select'; *@
+                // Redirect to the playlist selection view
+                window.location.href = '/Playlist/Select'; *@
         });
     });
 </script>

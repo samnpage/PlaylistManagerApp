@@ -3,24 +3,29 @@
     ViewData["Title"] = "Create a Playlist";
 }
 
-<h1>Create a Playlist</h1>
+<h1>Create Playlist</h1>
+
 <hr>
+
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<form method="post" asp-action="Create" class="row g-3">
-    <div class="col-md-6">
-        <label asp-for="Title" class="form-label">Title</label>
-        <input asp-for="Title" class="form-control" required>
-    </div>
-    <div class="col-md-6">
-        <label asp-for="Description" class="form-label">Description</label>
-        <input asp-for="Description" class="form-control" required>
-    </div>
-    <div class="col d-flex justify-content-between align-items-baseline">
-        <button type="submit" value="Create">Create Playlist</button>
-    </div>
-    
-</form>
+<div class="form-container">
+    <form method="post" asp-action="Create" class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control register-field" required>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Description" class="form-label">Description</label>
+            <input asp-for="Description" class="form-control register-field" required>
+        </div>
+        <div class="col d-flex justify-content-between align-items-baseline">
+            <button type="submit" value="Create" class="btn btn-primary register-button">Create Playlist</button>
+        </div>
+    </form>
+</div>
+
 <hr>
-<div>
-    <a asp-action="Index">Back to Playlists</a>
+
+<div class="playlist-nav">
+    <a asp-action="Index" class="playlist-nav-link">Back to Playlists</a>
 </div>

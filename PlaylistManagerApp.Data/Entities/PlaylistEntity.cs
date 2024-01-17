@@ -13,4 +13,6 @@ public class PlaylistEntity
 
     [MaxLength(100)]
     public string Description { get; set; } = string.Empty;
+
+    public DateTime DateAdded { get; set; }
 }

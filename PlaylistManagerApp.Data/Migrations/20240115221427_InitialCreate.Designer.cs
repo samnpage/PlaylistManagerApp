@@ -12,7 +12,7 @@ using PlaylistManagerApp.Data;
 namespace PlaylistManagerApp.Data.Migrations
 {
     [DbContext(typeof(PlaylistManagerDbContext))]
-    [Migration("20240105020338_InitialCreate")]
+    [Migration("20240115221427_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -170,6 +170,9 @@ namespace PlaylistManagerApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlaylistId"));
 
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -240,27 +243,6 @@ namespace PlaylistManagerApp.Data.Migrations
                     b.HasKey("SongId");
 
                     b.ToTable("Songs");
-                });
-
-            modelBuilder.Entity("PlaylistManagerApp.Data.Entities.SongRatingEntity", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SongId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsFavorite")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "SongId");
-
-                    b.HasIndex("SongId");
-
-                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("PlaylistManagerApp.Data.Entities.UserEntity", b =>
@@ -407,25 +389,6 @@ namespace PlaylistManagerApp.Data.Migrations
                     b.Navigation("Playlist");
 
                     b.Navigation("Song");
-                });
-
-            modelBuilder.Entity("PlaylistManagerApp.Data.Entities.SongRatingEntity", b =>
-                {
-                    b.HasOne("PlaylistManagerApp.Data.Entities.SongEntity", "Song")
-                        .WithMany()
-                        .HasForeignKey("SongId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PlaylistManagerApp.Data.Entities.UserEntity", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Song");
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

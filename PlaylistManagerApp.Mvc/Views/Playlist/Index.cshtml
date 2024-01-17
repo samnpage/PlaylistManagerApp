@@ -1,13 +1,42 @@
 @model IEnumerable<PlaylistManagerApp.Models.Playlist.PlaylistListItem>
 
-<h2>My Playlists</h2>
-<a asp-area="" asp-controller="Playlist" asp-action="Create">Create New Playlist</a>
+<h1>Playlists</h1>
+<div class="playlist-nav">
+    <a asp-area="" asp-controller="Playlist" asp-action="Create" class="playlist-nav-link">Create Playlist</a>
+</div>
+
 <hr>
-<ul>
-    @foreach (var playlist in Model)
-    {
-        <li>
-            <a asp-action="Details" asp-route-id="@playlist.Id">@playlist.Title</a>
-        </li>
-    }
-</ul>
+
+<div class="table-container">
+    <table class="playlist-table">
+        <thead class="playlist-head">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th class="col-3">Date Added</th>
+            </tr>
+        </thead>
+        <tbody class="playlist-list-body">
+            @foreach (var playlist in Model)
+            {
+                <tr class="playlist-row">
+                    <td>
+                        <a asp-action="Details" asp-route-id="@playlist.Id" class="playlist-link">@playlist.Title</a>
+                    </td>
+                    <td class="second-col">
+                        @playlist.Description
+                    </td>
+                    <td>
+                        @playlist.DateAdded
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="playlist-nav">
+    <a asp-controller="Home" asp-action="Index" class="playlist-nav-link">
+        Home
+    </a>
+</div>

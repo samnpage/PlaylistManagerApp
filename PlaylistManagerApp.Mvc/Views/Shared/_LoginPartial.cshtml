@@ -6,12 +6,12 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link">
-                Hello @User.Identity?.Name!
+            <a class="nav-link" id="username-display">
+                @User.Identity?.Name
             </a>
         </li>
         <li class="nav-item">
-            <a asp-action="Logout" asp-controller="Account" class="nav-link">
+            <a asp-action="Logout" asp-controller="Account" class="nav-link text-light">
                 Logout
             </a>
         </li>
@@ -19,12 +19,12 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link" asp-action="Register" asp-controller="Account">
+            <a class="nav-link text-light" asp-action="Register" asp-controller="Account">
                 Register
-                </a>
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-action="Login" asp-controller="Account">
+            <a class="nav-link text-light" asp-action="Login" asp-controller="Account">
                 Login
             </a>
         </li>
