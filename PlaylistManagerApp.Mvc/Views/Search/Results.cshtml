@@ -3,7 +3,6 @@
 <div class="results-container">
     <div class="results-search-bar-container">
     <form asp-controller="search" method="post" asp-action="Results" class="results-search-bar-form">
-        @* <h1 class="search-header">Playlist Pilot</h1> *@
         <label for="query"></label>
         <div class="results-search-bar-container">
             <input type="text" name="query" id="query" class="results-search-input" placeholder="Search" required />
@@ -48,11 +47,6 @@
 <script>
     $(document).ready(function () {
         $('#addToPlaylistForm').submit(function (e) {
-    @* // Prevent the default form submission
-                e.preventDefault();
-
-                // Redirect to the playlist selection view
-                window.location.href = '/Playlist/Select'; *@
         });
     });
 </script>
