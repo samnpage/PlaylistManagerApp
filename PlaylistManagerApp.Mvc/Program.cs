@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlaylistManagerApp.Data;
 using PlaylistManagerApp.Data.Entities;
+using PlaylistManagerApp.Services.Playback;
 using PlaylistManagerApp.Services.Playlist;
 using PlaylistManagerApp.Services.PlaylistSong;
 using PlaylistManagerApp.Services.Search;
@@ -25,6 +26,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPlaylistService, PlaylistService>();
 builder.Services.AddScoped<ISongService, SongService>();
 builder.Services.AddScoped<IPlaylistSongService, PlaylistSongService>();
+builder.Services.AddScoped<IPlaybackService, PlaybackService>();
 
 // Enable using Identity Managers (Users, SignIn, Password)
 builder.Services.AddDefaultIdentity<UserEntity>()
