@@ -1,16 +1,29 @@
 using PlaylistManagerApp.Models.User;
 using PlaylistManagerApp.Services.User;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace PlaylistManagerApp.Mvc.Controllers;
 
 public class AccountController : Controller
 {
     private readonly IUserService _userService;
+    private int _userId;
 
-    public AccountController(IUserService userService)
+    public AccountController(IUserService userService, int userId)
     {
         _userService = userService;
+        _userId = userId;
+    }
+
+    private void AssignUserId()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            string userId = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _userId = int.Parse(userId);
+        }
     }
 
     public IActionResult Register()
