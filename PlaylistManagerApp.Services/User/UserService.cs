@@ -72,10 +72,14 @@ public class UserService : IUserService
     public async Task<UserDetail> GetUserByIdAsync(int userId)
     {
         var user = await _context.Users.FindAsync(userId);
+        if (user is null)
+            return null;
 
         UserDetail detail = new()
         {
-            UserId = user.Id,
+            Id = user.Id,
+            Email = user.Email,
+            Username = user.UserName,
             Name = user.Name,
             RegistrationDate = user.RegistrationDate
         };
