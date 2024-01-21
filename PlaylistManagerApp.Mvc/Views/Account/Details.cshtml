@@ -1,0 +1,20 @@
+@model PlaylistManagerApp.Models.User.UserDetail
+
+<h2>Account Details</h2>
+
+<dl>
+    <dt>Id:</dt>
+    <dd>@Model.Id</dd>
+
+    <dt>Email:</dt>
+    <dd>@Model.Email</dd>
+
+    <dt>Username:</dt>
+    <dd>@Model.Username</dd>
+
+    <dt>Name:</dt>
+    <dd>@Model.Name</dd>
+
+    <dt>Registration Date:</dt>
+    <dd>@Model.RegistrationDate.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+</dl>
